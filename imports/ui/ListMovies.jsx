@@ -5,10 +5,12 @@ import { Meteor } from 'meteor/meteor';
 import { Movie } from '../model/Movie';
 import MovieView from './MovieView';
 import { setPage } from '../redux/actions/setPage';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import AddIcon from '@material-ui/icons/Add';
 
 const PER_PAGE = 5
 
@@ -48,6 +50,10 @@ class ListMovies extends Component {
         })
     }
 
+    goToAdd = () =>{
+        FlowRouter.go("addFilm")
+    }
+
     render() {
         const { dispatch, total } = this.props;
 
@@ -67,6 +73,12 @@ class ListMovies extends Component {
                 <Grid container spacing={24} className="marge30">
                     {this.renderMovies()}
                 </Grid>
+
+                <div className={Meteor.userId() ? "floatingButton" : "hide"}>
+                    <Button variant="fab" color="secondary" aria-label="edit" onClick={this.goToAdd}>
+                        <AddIcon/>
+                    </Button>
+                </div>
             </div>
         )
     }

@@ -36,12 +36,38 @@ FlowRouter.route("/film", {
   }
 });
 
-FlowRouter.route("/create", {
+var adminRoutes = FlowRouter.group({
+  prefix: '/admin',
+  name: 'admin',
+  triggersEnter: [function(context, redirect) {
+    if (!Meteor.userId()) {
+      redirect('/');
+    }
+  }]
+});
+
+adminRoutes.route('/', {
+  triggersEnter: [function(context, redirect) {
+    if (!Meteor.userId()) {
+      redirect('/');
+    }else {
+      redirect("/admin/addfilm")
+    }
+  }]
+});
+
+adminRoutes.route("/addfilm", {
+  name: 'addFilm',
   action: function () {
     mount(App, {
       content: <NewMovie / >
     });
-  }
+  },
+  triggersEnter: [function (context, redirect) {
+    if(!Meteor.userId()){
+      redirect('/');
+    }
+  }]
 });
 
 FlowRouter.route("/film/:_id", {
