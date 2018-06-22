@@ -26,6 +26,14 @@ FlowRouter.route("/film", {
   }
 });
 
+FlowRouter.route("/create", {
+  action: function () {
+    mount(App, {
+      content: <NewMovie / >
+    });
+  }
+});
+
 FlowRouter.route("/film/:_id", {
   name: 'film',
   action: function () {
