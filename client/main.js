@@ -21,7 +21,7 @@ FlowRouter.route("/", {
 FlowRouter.route("/film", {
   action: function () {
     mount(App, {
-      content: <NewMovie / >
+      content: <ListMovies / >
     });
   }
 });
