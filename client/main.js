@@ -7,6 +7,7 @@ import {
 import React from 'react';
 
 import App from '../imports/ui/App';
+import Login from '../imports/ui/Login';
 import ListMovies from '../imports/ui/ListMovies';
 import NewMovie from '../imports/ui/NewMovie';
 import MovieProposed from '../imports/ui/MovieProposed';
@@ -16,6 +17,15 @@ FlowRouter.route("/", {
   triggersEnter: [function (context, redirect) {
     redirect('/film');
   }]
+});
+
+FlowRouter.route("/login", {
+  name: 'login',
+  action: function () {
+    mount(App, {
+      content: <Login / >
+    });
+  }
 });
 
 FlowRouter.route("/film", {
