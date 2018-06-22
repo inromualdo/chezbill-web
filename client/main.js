@@ -1,22 +1,36 @@
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
+import {
+  FlowRouter
+} from 'meteor/ostrio:flow-router-extra';
+import {
+  mount
+} from 'react-mounter';
+import React from 'react';
 
-import './main.html';
+import App from '../imports/ui/App';
+import ListMovies from '../imports/ui/ListMovies';
+import NewMovie from '../imports/ui/NewMovie';
+import MovieProposed from '../imports/ui/MovieProposed';
 
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
+
+FlowRouter.route("/", {
+  triggersEnter: [function (context, redirect) {
+    redirect('/film');
+  }]
 });
 
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
+FlowRouter.route("/film", {
+  action: function () {
+    mount(App, {
+      content: <NewMovie / >
+    });
+  }
 });
 
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
+FlowRouter.route("/film/:_id", {
+  name: 'film',
+  action: function () {
+    mount(App, {
+      content: < MovieProposed / >
+    });
+  }
 });
