@@ -37,7 +37,7 @@ class MovieView extends Component {
             try{
                 link= img.versions.original.meta.pipeFrom
                 link= link.replace("dl=0","dl=1")
-            }catch{
+            }catch(error){
                 link= img.link()
             }
         }
