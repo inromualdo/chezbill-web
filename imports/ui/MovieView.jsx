@@ -24,6 +24,21 @@ class MovieView extends Component {
         FlowRouter.go('film', { _id: this.props.movie._id })
     }
 
+    getLink = (img) =>{
+
+        var l= ""
+
+        try{
+            l= img.versions.original.meta.pipeFrom
+
+            l= l.replace('dl=0','dl=1')
+        }catch{
+            l= img.link()
+        }
+
+        return l
+    }
+
     render() {
         const { movie, classes } = this.props
 
@@ -37,7 +52,7 @@ class MovieView extends Component {
                 <Grid item md={12} lg={12} className="mt-3 mb-3">
                     <Grid container spacing={24}>
                         <Grid item md={4} lg={4} className="imgContainer">
-                            <img src={img ? img.link() : "http://urbanartfair.com/wp-content/uploads/IGOUDMANE-146x97-cm-Huile-et-Acrylique-sur-lin1.jpg"} className="thumb" alt="Image" />
+                            <img src={img ? this.getLink(img) : "https://www.dropbox.com/s/qck8kvzt60oautw/rrdqyxtsaskrxhkps_original.jpg?dl=1"} className="thumb" alt="Image" />
                         </Grid>
                         <Grid item md={8} lg={8}>
                             <div className="title2">{movie.title}</div>
