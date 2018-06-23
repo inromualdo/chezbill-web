@@ -64,6 +64,10 @@ class App extends Component {
     }
   }
 
+  goToMain = () =>{
+    FlowRouter.go('/')
+  }
+
 
   render() {
 
@@ -78,7 +82,7 @@ class App extends Component {
             <div className={classes.root}>
               <AppBar position="static" color="primary">
                 <Toolbar>
-                  <Typography variant="title" color="secondary" className={classes.flex}>
+                  <Typography variant="title" color="secondary" className={`${classes.flex} link`} onClick={this.goToMain}>
                     CHEZ BILL
                   </Typography>
                   <Button color="inherit" onClick={this.goToLogin}>{ Meteor.userId() ? "SE DECONNECTER" : "ADMIN"}</Button>

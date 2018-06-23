@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import Image from '../imports/model/Image';
 import { saveMovie } from '../imports/api/saveMovie';
 import { getMovie } from '../imports/api/getMovie';
+import { getMovieAdmin } from '../imports/api/getMovieAdmin';
 import '../imports/api/publishMovies';
 import { saveProposition } from '../imports/api/saveProposition';
 

@@ -8,6 +8,7 @@ import React from 'react';
 
 import App from '../imports/ui/App';
 import Login from '../imports/ui/Login';
+import Calendar from '../imports/ui/Calendar'
 import ListMovies from '../imports/ui/ListMovies';
 import NewMovie from '../imports/ui/NewMovie';
 import MovieProposed from '../imports/ui/MovieProposed';
@@ -61,6 +62,20 @@ adminRoutes.route("/addfilm", {
   action: function () {
     mount(App, {
       content: <NewMovie / >
+    });
+  },
+  triggersEnter: [function (context, redirect) {
+    if(!Meteor.userId()){
+      redirect('/');
+    }
+  }]
+});
+
+adminRoutes.route("/film/:_id", {
+  name: 'moviedetails',
+  action: function () {
+    mount(App, {
+      content: <Calendar / >
     });
   },
   triggersEnter: [function (context, redirect) {

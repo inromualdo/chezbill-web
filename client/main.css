@@ -126,6 +126,16 @@ body {
   display: none;
 }
 
-.show{
-  display: block;
+.link{
+  color: #333333;
+}
+
+.link:hover{
+  cursor: pointer;
+  color: darkgoldenrod;
+}
+
+.little{
+  font-weight: 500;
+  color: #333333;
 }

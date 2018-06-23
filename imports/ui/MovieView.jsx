@@ -24,6 +24,10 @@ class MovieView extends Component {
         FlowRouter.go('film', { _id: this.props.movie._id })
     }
 
+    goToMovie = () =>{
+        FlowRouter.go('moviedetails', { _id: this.props.movie._id })
+    }
+
     render() {
         const { movie, classes } = this.props
 
@@ -51,7 +55,7 @@ class MovieView extends Component {
                             <img src={img ? link : "http://urbanartfair.com/wp-content/uploads/IGOUDMANE-146x97-cm-Huile-et-Acrylique-sur-lin1.jpg"} className="thumb" alt="Image" />
                         </Grid>
                         <Grid item md={8} lg={8}>
-                            <div className="title2">{movie.title}</div>
+                            <div className={Meteor.userId() ? "title2 link" : "title2"} onClick={this.goToMovie}>{movie.title}</div>
                             <div className="title3">{movie.target}</div>
                             <div className="title3">{this.getDate(movie.proposedDate1) + " | " + this.getDate(movie.proposedDate2)}</div>
                             <div className="content mt-4">{movie.synopsis}</div>
