@@ -46,6 +46,7 @@ class Calendar extends Component {
                 if (err) {
                     alert(err);
                 } else {
+                    console.log(movie);
                     this.setState({
                         movie: movie
                     })
@@ -92,6 +93,30 @@ class Calendar extends Component {
         this.setState({
             dialogOpen: false
         })
+    }
+
+    getNoteString = (numb) =>{
+        var value= "Okay"
+        switch (numb) {
+            case 256:
+                value= "Great"
+                break;
+            case 192:
+                value= "God"
+                break;
+            case 128:
+                value= "Okay"
+                break;
+            case 64:
+                value= "Bad"
+                break;
+            case 0:
+                value= "Terrible"
+                break;
+        
+            default:
+                break;
+        }
     }
 
     renderList = () => {
@@ -144,6 +169,26 @@ class Calendar extends Component {
                     </div>
                 )
             }
+        }else{
+
+            var { notes } = movie;
+
+            notes= _.groupBy(notes, "note");
+
+            for (const note in notes) {
+                const nb = notes[note].length
+                views.push(
+                    <div key={note} className={this.props.classes.root}>
+                        <Grid container spacing={24}>
+                            <Grid item md={12} lg={12} className="mt-3 mb-3">
+                                <div><b>{this.getNoteString(Number(note))}</b></div>
+                                <div><h5 className="little">{nb} Pers</h5></div>
+                                <hr />
+                            </Grid>
+                        </Grid>
+                    </div>
+                )
+            }
         }
 
         return views
@@ -153,11 +198,14 @@ class Calendar extends Component {
 
         const { classes } = this.props;
 
+        console.log(this.state.movie);
+
         return (
             <div className="formIn">
                 <b className='title'>{this.state.movie.title}</b>
 
-                <Grid container spacing={24} className="marge30">
+                <div className={!this.state.movie.finalSelected ? "marge30" : "hide"}>
+                <Grid container spacing={24}>
                     <Grid item md={4}>
                         <TextField
                             select
@@ -193,6 +241,7 @@ class Calendar extends Component {
                     </Grid>
                     <Grid item md={4}></Grid>
                 </Grid>
+                </div>
                 <div className="marge60">
                     {this.renderList()}
                     <div className={this.state.movie.finalSelected ? "hide" : "marge30"}>

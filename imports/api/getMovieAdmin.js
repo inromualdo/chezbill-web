@@ -8,6 +8,9 @@ import {
 import {
   Proposition
 } from '../model/Proposition';
+import {
+  Note
+} from '../model/Note';
 
 
 export const getMovieAdmin = new ValidatedMethod({
@@ -33,6 +36,10 @@ export const getMovieAdmin = new ValidatedMethod({
 
     } else {
       //Envoyer les survey mobile
+      movie.notes= Note.find({
+        movieId: movie._id
+      }).fetch();
+      
     }
 
 
