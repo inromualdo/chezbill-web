@@ -18,7 +18,7 @@ Schemas.Proposition = new SimpleSchema({
     createdDate: {
         type: Number,
         autoValue: function() {
-            if (this.isUpdate) {
+            if (this.isInsert) {
               return new Date().getTime();
             }
           },

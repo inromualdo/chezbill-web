@@ -21,7 +21,7 @@ Schemas.Movie = new SimpleSchema({
     createdDate: {
         type: Number,
         autoValue: function() {
-            if (this.isUpdate) {
+            if (this.isInsert) {
               return new Date().getTime();
             }
           },
@@ -44,11 +44,3 @@ Schemas.Movie = new SimpleSchema({
 
 
 Movie.attachSchema(Schemas.Movie);
-
-
-if (Meteor.isServer) {
-    //Liste paginée des films
-
-
-    
-}
