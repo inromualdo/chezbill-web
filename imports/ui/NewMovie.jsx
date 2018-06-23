@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import DatePicker from 'material-ui-pickers/DatePicker';
 import Grid from '@material-ui/core/Grid';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 // NewMovie component - represents a movie item form
 export default class NewMovie extends Component {
@@ -69,10 +70,10 @@ export default class NewMovie extends Component {
                     })
 
                     uploader.on('end', (error, fileObj) => {
-                        console.log('end');
                         this.setState({
                             loading: false
                         })
+                        FlowRouter.go("/")
                     })
 
                     uploader.start()
