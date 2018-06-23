@@ -29,3 +29,4 @@ tsega:bootstrap3-datetimepicker
 ostrio:flow-router-meta
 ostrio:flow-router-extra
 accounts-password
+simple:rest
